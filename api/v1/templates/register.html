@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POSipy</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+        <h1>welcom to POSify</h1>
+	<button id="login">login</button>
+    <p>fill The form below to register.</p>
+    <div id="form">
+	    <form>
+		    <p> Full Name <input type="text" id="fullname" placeholder="enter your fullname" required></p>
+		    <p> User Name <input type="text" id="user_name" placeholder="enter User name " required></p>
+		    <p> gender:
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="male"> Male </label>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female"> Female </label>
+		    <p> phone number <input type="text" id="phone" placeholder="enter phone number" required></p>
+		    <p>role: 
+		    <input type="radio" id="admin" name="role" value="admin">
+		    <label for="admin"> admin </label>
+		    <input type="radio" id="staff" name="role" value="staff">
+                    <label for="staff"> staff </label>
+		    </p>
+		    <p> password <input type="password" id="password" placeholder="choose your password" required></p>
+		    <p> confirm password <input type="password" id="c_password" placeholder="confirm your password" required></p>
+		    <input type="button" id="register" value="submit"> 
+		    <p id="status"></p>
+	    </form>
+    </div>
+
+<script>
+	$(function(){
+			$("#register").on("click", function(){
+					var full_name = $("#fullname").val()
+					var user_name = $("#user_name").val()
+					var phone_number = $("#phone").val()
+					var gender = $("INPUT[name='gender']:checked").val()
+					var role = $("INPUT[name='role']:checked").val()
+					var password = $("#password").val()
+					var c_password = $("#c_password").val()
+					if (!isNaN(full_name) || !isNaN(user_name)) {
+							$("#status").text("Full name and User name  must be string")
+							return
+						}
+					if ( isNaN(phone_number) || phone_number.length !== 11 ){
+							$("#status").text("invalid phone number")
+							return
+						}
+					if (typeof gender !== "string" || typeof role !== "string") {
+							$("#status").text("you most choose role and gender")
+                                                        return
+						}
+					if (c_password !== password) {
+							$("#status").text("password mismatch")
+                                                        return
+						}
+					var dic = JSON.stringify({
+							full_name: full_name,
+							user_name: user_name,
+							password: password,
+							phone_number: phone_number,
+							role: role,
+							gender: gender
+						})
+					var url = 'http://localhost:5000/users' 
+					$.ajax({
+							url: url,
+							data: dic,
+							contentType: 'application/json',
+							type: 'POST',
+							success: function(res){
+									$("#status").text(res)
+								}
+
+						})
+				})
+			$("#login").on("click", function(){
+					window.location.href = "http://localhost:5000/"
+				})
+		})
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POSipy</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<h1>Hello, {{ user.full_name  }}</h1>
+  <p>Transaction History.</p>
+  <p>Total transactions <b>{{ storage.profit().get("count") }}</b></p>
+  <p>Total Profit <b>{{ storage.profit().get("profit") }}</b></p>
+  <table border="1">
+	  <tr><td><b> Full Name</b> </td><td><b> User Name </b></td> <td><b>Total transactions</b></td> <td><b> Total profit</b></td></tr>
+  {% for k, v in storage.all("User").items()  %}
+  <td> {{ v.full_name  }} </td> <td> {{ v.user_name  }} </td> <td>{{ storage.profit(user_id=v.id).get("count") }} </td> <td> {{ storage.profit(user_id=v.id).get("profit") }}  </td></tr>
+  {% endfor  %}
+  </ul>
+  <div></div>
+    <script>
+    </script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POSipy</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+
+  <style>
+
+
+header, footer, aside, .main {
+                border-color: white;
+                background-color: DodgerBlue;
+
+        }
+
+header {
+
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        height: 50px;
+        border : 1px solid;
+	border-color: DodgerBlue;
+        background-color: white;
+
+
+}
+
+footer {
+
+        position: fixed;
+        left: 30px;
+        right: 30px;
+        bottom: 0px;
+        height: 50px;
+        lear : both;
+
+}
+aside {
+
+        position: fixed;
+        border : 1px solid;
+        float: left;
+        width: 15%;
+        top: 0px;
+        bottom: 0px;
+	border-color: DodgerBlue;
+        background-color: white;
+
+
+}
+
+#u {
+	position: absolute;
+
+}
+.container  {
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        border-color: white;
+	eight: 100%;
+        background-color: LightGray;
+	verflow: hidden;
+}
+
+p {
+
+        width: 50%;
+}
+
+.main {
+        position: absolute;
+	left: 15.2%;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        float: right;
+        width: 82%;
+        background-color: white;
+
+}
+
+nav {
+        position: absolute;
+	left: 0px;
+	right: 0px;
+}
+
+
+nav ul{
+	display: flex;
+	positin: absolute;
+	flex-direction: column;
+	gap: 0rem;
+	left: 0%;
+	right: 0%;
+	border: solid 1px green;
+	width: 100%;
+	list-style-type: none;
+	padding: 0; /* Optional: remove default padding */
+}
+
+
+nav li {
+	border: solid 1px green;
+	height: 40px;
+	color: red;
+	padding-top: 12%;
+	padding-left: 10%;
+	right: 0%;
+	left: 5%;
+	
+}
+
+#user {
+	height: 100px; 
+	background-color: LightGray;
+}
+        </style>
+
+
+
+</head>
+<body>
+        <section class="container">
+		<aside>
+			<div id="nav">
+				<h1>POSipy</h1>
+				<div id="user">
+				<p>salim aliyu musawa<p/>
+				</div>
+				<nav>
+					<ul>
+					<li>Dashbord</li>
+					<li>Add record</li>
+					<li>Transactions</li>
+					<li></li>
+					</ul>
+				</nav>
+			</div>
+		</aside>
+<section class="main">
+        <header> This is header </header>
+	<h1>Hello, {{ user.full_name  }}</h1>
+	<button id="logout">logout</button>
+    <p>Transaction History.</p>
+    <div>
+	    <form>
+		<h2>Create a new transaction</h2>
+		<p>	Select transaction type</p>    
+	    	<input type=radio id="amount" name="t_type" value="Withdraw">
+		<label for="amount"> Withdraw <label>
+	    	<input type=radio id="charges" name="t_type" value="Deposit">
+		<label for="charges"> Deposit <label>
+	    	<input type=radio id="Bills" name="t_type" value="Bills">
+		<label for="charges"> Bills <label>
+	    	<p> <input type="text" name="amount" placeholder="enter amount" required></p>
+	    	<p> <input type="text" name="charges" placeholder="enter charges" required></p>
+	    	<input type="button" id="insert" value="add">
+		<p id="status"> </p>
+	    <form>
+	    <ul id="ls"> 
+	    </ul> 
+    </div>
+    <input type="button" id="viewrecord" value="view">
+    <div id="t"></div>
+    </section>
+        </section>
+<footser> </fooster>
+    
+    <script>
+	    $(function() { 
+				$("#insert").on("click", function(){
+						    var type = $("INPUT[name='t_type']:checked").val()
+						    var amount = Number($("INPUT[name='amount']").val())
+						    var charges = Number($("INPUT[name='charges']").val())
+						    if (isNaN(amount) || amount === 0 || isNaN(charges) || charges === 0 || typeof type != "string" ) {
+									$("#status").text('Invalid input')
+									return
+								}
+						    else {
+									$("#status").text('Record Successfully Added')
+								}
+						    var data = {amount: amount, charges: charges, class: type, user_id: '{{ user.id }}'}
+						    var url = 'http://localhost:5000/transaction/' + '{{ user.id }}'
+						    $.ajax({
+									url: url,
+									type: "POST",
+									data: JSON.stringify(data),
+									contentType: "application/json",
+									success: function(res){
+									if (res === "ok") {
+						    var result = `<b>${type}</b>  <i>amount:</i>  <b>${amount}</b>  <i>charges:</i>  <b>${charges}</b>`
+
+						    $("#ls").prepend( '<li>' + result + '</li>')
+										    } }})
+			})
+				$("#viewrecord").on("click", function(){
+						    $('#t').html('<table border="1"> <tr> <td> Transactin Type </td> <td> Amount     </td> <td> Charges     </td> <td> profit </td> <td> Date </td></tr>{%  for k, v in storage.transactions(user_id=user.id).items() %}<tr><td>{{ v.__class__.__name__ }}</td> <td> {{ v.amount  }} </td> <td> {{ v.charges }} </td> <td> {{ v.profit  }}</td> <td> {{ v.create_at  }} </td></tr>{% endfor  %}</table>'
+
+					    )})
+				$("#logout").on("click", function(){
+						    window.location.href = 'http://localhost:5000/'
+					    })
+	    })
+    </script>
+</body>
+</html>
+                     
