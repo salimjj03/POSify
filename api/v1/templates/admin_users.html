@@ -1,0 +1,7 @@
+<table border="1">
+          <tr><td><b> Full Name</b> </td><td><b> User Name </b></td> <td><b>Total transactions</b></td> <td><b> Total profit</b></td></tr>
+  {% for k, v in storage.all("User").items()  %}
+  <td> {{ v.full_name  }} </td> <td> {{ v.user_name  }} </td> <td>{{ storage.profit(user_id=v.id).get("count") }} </td> <td> {{ storage.profit(user_id=v.id).get("profit") }}  </td></tr>
+  {% endfor  %}
+  </table>
+

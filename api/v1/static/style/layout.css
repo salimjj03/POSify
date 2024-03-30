@@ -1,0 +1,255 @@
+body {
+        background-color: lightgray;
+}
+
+
+header, footer, aside, .main {
+                border-color: white;
+                background-color: none;
+        }
+
+header {
+        display: flex;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        height: 60px;
+        border : 1px solid;
+        border-color: grey;
+        background-color: white;
+
+
+}
+
+header #logout {
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+        right: 15px;
+        float: right;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 8px;
+        top: 12px;
+        border-radius: 5px;
+}
+
+header div {
+        padding-top: 17px;
+        text-align: center;
+}
+#pass {
+        position: absolute;
+        right: 100px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 8px;
+        top: 12px;
+        border-radius: 5px;
+
+
+}
+
+#role {
+        position: absolute;
+        padding-top: 10px;
+        padding-bottom: 8px;
+        top: 12px;
+        left: 30px;
+        width: 100px;
+        border: solid 2px DodgerBlue;
+        border-radius: 5px;
+}
+
+footer {
+
+        position: fixed;
+        left: 30px;
+        right: 30px;
+        bottom: 0px;
+        height: 50px;
+        lear : both;
+
+}
+aside {
+
+        position: fixed;
+        border : 1px solid;
+        float: left;
+        width: 200px;
+        top: 0px;
+        bottom: 0px;
+        border-color: gray;
+        background-color: white;
+
+
+}
+
+#u {
+        position: absolute;
+
+}
+
+.container  {
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        border-color: white;
+        eight: 100%;
+        background-color: none;
+        verflow: hidden;
+}
+
+p {
+
+        width: 50%;
+}
+
+.main {
+        position: absolute;
+        left: 200px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        background-color: none;
+
+}
+
+nav {
+        position: absolute;
+        left: 0px;
+        right: 0px;
+}
+
+#nav h1{
+        font-size: 25px;
+        padding-left: 15px;
+        color: DodgerBlue;
+
+}
+nav ul{
+        display: flex;
+        positin: absolute;
+        flex-direction: column;
+        gap: 0rem;
+        left: 0%;
+        right: 0%;
+        width: 100%;
+        list-style-type: none;
+        padding: 0; /* Optional: remove default padding */
+}
+
+#pass:hover{
+        color: DodgerBlue;
+        background-color: rgba(30, 144, 255, 0.1);
+        border-left: solid 2px DodgerBlue;
+        border-right: solid 2px DodgerBlue;
+}
+
+#logout:hover{
+        color: DodgerBlue;
+        background-color: rgba(30, 144, 255, 0.1);
+        border-left: solid 2px DodgerBlue;
+        border-right: solid 2px DodgerBlue;
+}
+
+nav li {
+        height: 40px;
+        color: Gray;
+        padding-top: 12%;
+        padding-left: 10%;
+        right: 0%;
+        left: 5%;
+
+}
+
+nav li:hover{
+        color: DodgerBlue;
+        background-color: rgba(30, 144, 255, 0.1);
+        border-left: solid 2px DodgerBlue;
+}
+
+
+#user {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        height: 100px;
+        padding-left: 20px;
+        background-color: LightGray;
+}
+
+nav li {
+        height: 40px;
+        color: Gray;
+        padding-top: 12%;
+        padding-left: 10%;
+        right: 0%;
+        left: 5%;
+
+}
+
+nav li:hover{
+        color: DodgerBlue;
+        background-color: rgba(30, 144, 255, 0.1);
+        border-left: solid 2px DodgerBlue;
+}
+
+
+#user {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        height: 100px;
+        padding-left: 20px;
+        background-color: LightGray;
+}
+
+#main2 {
+        position: absolute;
+        left: 60px;
+        right: 60px;
+        top: 20%;
+        background-color: white;
+        border-radius: 3px;
+}
+
+#main3 {
+        positiosn: flex;
+        top: 20px;
+        padding-left: 50px;
+        background-color: none;
+}
+
+
+#pro {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: DodgerBlue;
+        width: 50px;
+        left: 50px;
+        height: 45%;
+        border-radius: 50%;
+        font-size: 20px;
+        text-align: center;
+        color: white;
+}
+
+#tag {
+
+        background-color: DodgerBlue;
+        padding-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 3px;
+        color: white;
+}
+

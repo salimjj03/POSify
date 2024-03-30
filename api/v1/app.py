@@ -33,6 +33,39 @@ def admin(user_name):
         return "Not found"
     return render_template("admin.html", storage=storage, user=user)
 
+@app.route("/transections/<user_name>", strict_slashes=False)
+def transections(user_name):
+    user = storage.check_user_name("User", user_name)
+    if user == "Nil":
+        return "Not found"
+    return render_template("transection.html", id=user.id, user=user, storage=storage)
+
+@app.route("/add_record/<user>", strict_slashes=False)
+def add(user):
+    user = storage.check_user_name("User", user)
+    if user == "Nil":
+        return "Not found"
+
+    return render_template("add_record.html", user=user)
+
+@app.route("/user_home/<user_name>", strict_slashes=False)
+def user_home(user_name):
+    user = storage.check_user_name("User", user_name)
+    return render_template("user_home.html", user=user, storage=storage)
+
+@app.route("/admin_transactions", strict_slashes=False)
+def admin_t():
+    return render_template("admin_transaction.html", storage=storage)
+
+@app.route("/admin_users", strict_slashes=False)
+def admin_u():
+    return render_template("admin_users.html", storage=storage)
+
+@app.route("/admin_home/<user_name>", strict_slashes=False)
+def ad_home(user_name):
+    user = storage.check_user_name("User", user_name)
+    return render_template("admin_home.html", storage=storage, user=user)
+
 
 @app.teardown_appcontext
 def treardown(exc):

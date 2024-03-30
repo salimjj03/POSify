@@ -1,0 +1,5 @@
+<h2>Transaction History.</h2>
+  <p>Total transactions <b>{{ storage.profit(user_id=user.id).get("count") }}</b></p>
+  <p>Total Profit <b>{{ storage.profit(user_id=user.id).get("profit") }}</b></p>
+
+<table border="1"> <tr> <td> Transactin Type </td> <td> Amount     </td> <td> Charges     </td> <td> profit </td> <td> Date </td></tr>{%  for k, v in storage.transactions(user_id=id).items() %}<tr><td>{{ v.__class__.__name__ }}</td> <td> {{ v.amount  }} </td> <td> {{ v.charges }} </td> <td> {{ v.profit  }}</td> <td> {{ v.create_at  }} </td></tr>{% endfor  %}</table>
