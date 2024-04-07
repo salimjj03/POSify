@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POSify</title>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="../static/scripts/0-pos.js"></script>
+    <script src="../static/scripts/dashbord.js"></script>
     <link rel="stylesheet" type="text/css" href="../static/style/layout.css">
 </head>
 <body>
@@ -27,7 +27,7 @@
 			</div>
 		</aside>
 <section class="main">
-	<header> <div id="role">{{ user.role  }}</div><div id="pass">change password</div><div id="logout">logout</div> </header>
+	<header> <div id="role">{{ user.role  }}</div><div id="pass" data-pass="{{ user.id  }}">change password</div><div id="logout">logout</div> </header>
 	<section id="main2">
 		
 	<h1 id="tag">Dashbord</h1>
@@ -45,54 +45,6 @@
     </section>
         </section>
 <footser> </fooster>
-<script>
-$(function() {
-$.ajax({
-	        url: "http://localhost:5000/user_home/{{ user.user_name  }}",
-		dataTyle: "html",
-		success: function(data) {
-				$("#page").html(data);
-			}
-	})
-$("#dashbord").on("click", function(){
-                $.ajax({
-                        url: "http://localhost:5000/user_home/{{ user.user_name  }}",
-                        dataType: "html",
-                        success: function(data) {
-                                $('#page').html(data);
-                        },
-                        error: function(xhr, status, error) {
-                                console.error("Error loading file:", error);
- }
-                })
-        })
-
-$("#add_nav").on("click", function(){
-                $.ajax({
-                        url: "http://localhost:5000/add_record/{{ user.user_name  }}",
-                        dataType: "html",
-                        success: function(data) {
-                                $('#page').html(data);
-                        },
-                        error: function(xhr, status, error) {
-                                console.error("Error loading file:", error);
- }
-                })
-        })
-$("#transaction").on("click", function(){
-                $.ajax({
-                        url: "http://localhost:5000/transections/{{ user.user_name }}",
-                        dataType: "html",
-                        success: function(data) {
-                                $('#page').html(data);
-                        },
-                        error: function(xhr, status, error) {
-                                console.error("Error loading file:", error);
-                        }
-                })
-	})
-	})
-</script>
 </body>
 </html>
                      

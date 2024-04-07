@@ -16,49 +16,28 @@
                 </div>
         <fieldset>
                 <div class="form">
+			<form action="#" method="POST">
              <input type="text" id="input"  name="user_name" placeholder="Enter username" required>
             <input id="p" type="password"  id="input" name="password" placeholder="Enter password" required>
             <input id="bot" type="submit"  value="Log-in">
             <p>Forgotten password?<p/>
-        <p id="d"></p>
+	    <p id="d" style="color: red">{{ status }}</p>
+	    </form>
         </fieldset>
         </div>
 
     <script>
 	    $(function(){
-				$("INPUT[type='submit']").on("click", function(){
+				$("bot").on("click", function(){
 						    var user_n = $("INPUT[name='user_name']").val();
 						    var pass = $("INPUT[name='password']").val();
 						    if (user_n === "" || pass === "") {
 									$("#d").text("User Name and password required")
 									return
 								}
-
-						    var url = "http://localhost:5000/user/" + user_n;
-						    var data = JSON.stringify({ user_name: user_n, password: pass });
-						    $.ajax({
-									url: url,
-									type: "POST",
-									data: data,
-									contentType: "application/json",
-									success: function(res) {
-									if (res === "admin") {
-											    window.location.href = "http://localhost:5000/admin/" + user_n
-										    } else if (res === "no role") {
-											    $("#d").text("No role assign to User, Contact admin")
-										    } else if (res === "staff") {
-													window.location.href = "http://localhost:5000/dashbord/" + user_n
-										    } else {
-                                                                                            $("#d").text(res)
-                                                                                    }
-										   }
 								}) 	
 					    })
-				$("#register").on("click", function(){
-						    window.location.href = "http://localhost:5000/register"
-					    })
 
-			})
     </script>
 </body>
 </html>

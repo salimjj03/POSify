@@ -50,10 +50,24 @@ fieldset {
          background-color: none;
  }
 
+ form {
+         position: absolute;
+         display: flex;
+	 top: 0%;
+         bottom: 0%;
+	 left: 1%;
+         right: 1%;
+         justify-content: center;
+         align-items: center;
+	 flex-direction: column;
+	 gap: 0.5rem;
+ }
+
  input {
          flex: 1;
          text-align: center;
-         width: 80%;
+         width: 90%;
+	 height: 90px;
          border-radius: 7px;
          border: solid 1px LightGray;
  }

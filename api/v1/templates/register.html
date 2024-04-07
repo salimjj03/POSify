@@ -5,33 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POSipy</title>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <style>
+		#form {
+                        width: 250px;
+			border-radius: 10px;
+                }
+
+		form {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 0.2rem;
+			flex-direction: column;
+			 left: 0%;
+                        right: 0%;
+			height: 450px;
+                }
+
+		form > * {
+			display: flex;
+			width: 95%;
+			height: 70px;
+			left: 0%;
+			right: 0%;
+			border-radius: 5px;
+		}
+
+		INPUT[type="button"] {
+			background-color: DodgerBlue;
+		}
+
+    </style>
 </head>
 <body>
-        <h1>welcom to POSify</h1>
-	<button id="login">login</button>
     <p>fill The form below to register.</p>
-    <div id="form">
+    <fieldset id="form">
+	    <legend>Register</legend>
 	    <form>
-		    <p> Full Name <input type="text" id="fullname" placeholder="enter your fullname" required></p>
-		    <p> User Name <input type="text" id="user_name" placeholder="enter User name " required></p>
-		    <p> gender:
-                    <input type="radio" id="male" name="gender" value="male">
+		    <input type="text" id="fullname" placeholder="enter your fullname" required>
+		    <input type="text" id="user_name" placeholder="enter User name " required>
+		    <fieldset> <legend>Gender</legend><input type="radio" id="male" name="gender" value="male">
                     <label for="male"> Male </label>
                     <input type="radio" id="female" name="gender" value="female">
-                    <label for="female"> Female </label>
-		    <p> phone number <input type="text" id="phone" placeholder="enter phone number" required></p>
-		    <p>role: 
-		    <input type="radio" id="admin" name="role" value="admin">
+		    <label for="female"> Female </label></fieldset>
+		    <input type="text" id="phone" placeholder="enter phone number" required>
+		    <fieldset>
+			    <legend>Role</legend>
+			    <input type="radio" id="admin" name="role" value="admin">
 		    <label for="admin"> admin </label>
 		    <input type="radio" id="staff" name="role" value="staff">
-                    <label for="staff"> staff </label>
-		    </p>
-		    <p> password <input type="password" id="password" placeholder="choose your password" required></p>
-		    <p> confirm password <input type="password" id="c_password" placeholder="confirm your password" required></p>
+		    <label for="staff"> staff </label></fieldset>
+		    <input type="password" id="password" placeholder="choose your password" required>
+		    <input type="password" id="c_password" placeholder="confirm your password" required>
 		    <input type="button" id="register" value="submit"> 
 		    <p id="status"></p>
 	    </form>
-    </div>
+    </fieldset>
 
 <script>
 	$(function(){

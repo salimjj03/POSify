@@ -98,7 +98,7 @@ class Db_storage():
                     else:
                         return "invalid key"
             self.__session.commit()
-            return  result
+            return  "{} updated successfully to {}".format(k, v)
         return "in valid id"
 
     def delete(self, cls, id):

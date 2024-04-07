@@ -3,4 +3,4 @@
   <p>Total Profit <b>{{ storage.profit().get("profit") }}</b></p>
 
 
-<table border="1"> <tr> <td> Transactin Type </td> <td> Amount     </td> <td> Charges     </td> <td> profit </td> <td> Date </td></tr>{%  for k, v in storage.transactions().items() %}<tr><td>{{ v.__class__.__name__ }}</td> <td> {{ v.amount  }} </td> <td> {{ v.charges }} </td> <td> {{ v.profit  }}</td> <td> {{ v.create_at  }} </td></tr>{% endfor  %}</table>
+  <table border="1"> <tr> <td><b> Transactin Type</b>  </td><td> <b> Staff</td> <td><b>  Amount</td> <td> <b> Charges</td> <td><b>  profit </td> <td><b>  Date </td></tr>{%  for k, v in storage.transactions().items() %}<tr><td> {{ v.__class__.__name__ }}</td> <td> {{ storage.check_id("User", v.user_id).user_name  }} </td><td> {{ v.amount  }} </td><td> {{ v.charges }} </td> <td> {{ v.profit  }}</td><td> {{ v.create_at  }} </td></tr>{% endfor  %}</table>

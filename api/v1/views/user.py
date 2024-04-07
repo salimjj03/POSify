@@ -35,7 +35,7 @@ def users():
             return"User name exist"
         return "{} created Successfully".format(data.get("full_name"))
 
-
+"""
 @app_views.route("/user/<id>", strict_slashes=False, methods=["GET", "DELETE", "POST"])
 def user(id):
 
@@ -63,7 +63,7 @@ def user(id):
     if request.method == "DELETE":
         storage.delete("User", id)
         return jsonify({"delete: Successfully"})
-
+"""
 
 @app_views.route("/all/<user_id>/", strict_slashes=False, methods=["GET"])
 def all(user_id):
