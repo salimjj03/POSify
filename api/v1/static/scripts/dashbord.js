@@ -1,6 +1,6 @@
 $(function() {
 	$.ajax({
-                url: "http://localhost:5000/user_home/",
+                url: "http://web-01.salimjj03.tech/user_home/",
                 dataTyle: "html",
                 success: function(data) {
                                 $("#page").html(data);
@@ -9,7 +9,7 @@ $(function() {
 
 	$("#dashbord").on("click", function(){
                 $.ajax({
-                        url: "http://localhost:5000/user_home/",
+                        url: "http://web-01.salimjj03.tech/user_home/",
                         dataType: "html",
                         success: function(data) {
                                 $('#page').html(data);
@@ -22,7 +22,7 @@ $(function() {
 
 	$("#add_nav").on("click", function(){
                 $.ajax({
-                        url: "http://localhost:5000/add_record/",
+                        url: "http://web-01.salimjj03.tech/add_record/",
                         dataType: "html",
                         success: function(data) {
                                 $('#page').html(data);
@@ -34,7 +34,7 @@ $(function() {
         })
 	$("#transaction").on("click", function(){
                 $.ajax({
-                        url: "http://localhost:5000/transections/",
+                        url: "http://web-01.salimjj03.tech/transections/",
                         dataType: "html",
                         success: function(data) {
                                 $('#page').html(data);
@@ -47,7 +47,7 @@ $(function() {
 
 
         $("#logout").on("click", function(){
-                window.location.href = 'http://localhost:5000/logout';
+                window.location.href = 'http://web-01.salimjj03.tech/logout';
         })
 	$("#pass").on("click", function(){
                 var id = $("#pass").data("pass")
@@ -57,7 +57,7 @@ $(function() {
 		}
                 var dic = JSON.stringify({password: value})
                 $.ajax({
-                        url: "http://localhost:5000/user/" + id,
+                        url: "http://web-01.salimjj03.tech/user/" + id,
                         method: "PUT",
                         data: dic,
                         contentType: "application/json",

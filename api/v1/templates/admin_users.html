@@ -25,7 +25,7 @@
                                                 dic = JSON.stringify({password: name})
                                         }
                                         $.ajax({
-                                                          url: "http://localhost:5000/user/" + $("#test").val(),
+                                                          url: "http://web-01.salimjj03.tech/user/" + $("#test").val(),
                                                           data: dic,
                                                           contentType: "application/json",
                                                           method: "PUT",
@@ -33,7 +33,7 @@
 
 									    alert(res)
 									    $.ajax({
-                       url: "http://localhost:5000/admin_users",
+                       url: "http://web-01.salimjj03.tech/admin_users",
                        dataType: "html",
                        success: function(data){
                                $("#admin_home").html(data);
@@ -63,14 +63,14 @@
 								return
 							}
 					      $.ajax({
-								url: "http://localhost:5000/user/" + id,
+								url: "http://web-01.salimjj03.tech/user/" + id,
 								data: dic,
 								method: "DELETE",
 								contentType: "application/json",
 								success: function(res) {
 										  alert(res)
 										  $.ajax({
-                       url: "http://localhost:5000/admin_users",
+                       url: "http://web-01.salimjj03.tech/admin_users",
                        dataType: "html",
                        success: function(data){
                                $("#admin_home").html(data);
@@ -79,7 +79,7 @@
 									  })
 									  }
 							})
-					      $("#test").text(id)
+					      $("#test").text()
 				      })
 		    })
   </script>

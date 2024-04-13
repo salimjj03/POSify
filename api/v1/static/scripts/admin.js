@@ -1,6 +1,6 @@
 $(function(){
 	$.ajax({
-		url: "http://localhost:5000/admin_home/",
+		url: "http://web-01.salimjj03.tech/admin_home/",
                 dataType: "html",
                 success: function(data){
 			$("#admin_home").html(data);
@@ -9,7 +9,7 @@ $(function(){
 
 	$("#admin_dashbord").on("click", function() {
         	$.ajax({
-        		url: "http://localhost:5000/admin_home/",
+        		url: "http://web-01.salimjj03.tech/admin_home/",
         		dataType: "html",
         		success: function(data){
 				$("#admin_home").html(data);
@@ -18,7 +18,7 @@ $(function(){
 	})
 	$("#admin_transaction").on("click", function() {
 		$.ajax({
-                	url: "http://localhost:5000/admin_transactions",
+                	url: "http://web-01.salimjj03.tech/admin_transactions",
                 	dataType: "html",
                         success: function(data){
                         $("#admin_home").html(data);
@@ -27,7 +27,7 @@ $(function(){
         })
 	$("#view_staff").on("click", function() {
                 $.ajax({
-                       url: "http://localhost:5000/admin_users",
+                       url: "http://web-01.salimjj03.tech/admin_users",
                        dataType: "html",
                        success: function(data){
 			       $("#admin_home").html(data);
@@ -36,7 +36,7 @@ $(function(){
 	})
 	$("#add_staff").on("click", function() {
 		$.ajax({
-			url: "http://localhost:5000/register",
+			url: "http://web-01.salimjj03.tech/register",
 			dataType: "html",
 			success: function(data){
 				$("#admin_home").html(data);
@@ -44,7 +44,7 @@ $(function(){
 		})
 	})
 	$("#logout").on("click", function(){
-		window.location.href = 'http://localhost:5000/logout';
+		window.location.href = 'http://web-01.salimjj03.tech/logout';
 	})
 	$("#pass").on("click", function(){
                 var id = $("#pass").data("pass")
@@ -54,7 +54,7 @@ $(function(){
 		}
                 var dic = JSON.stringify({password: value})
                 $.ajax({
-                        url: "http://localhost:5000/user/" + id,
+                        url: "http://web-01.salimjj03.tech/user/" + id,
                         method: "PUT",
                         data: dic,
                         contentType: "application/json",
