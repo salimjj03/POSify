@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" This is the storage module. """
 
 
 from models.base import base_db
@@ -11,16 +12,26 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 
 
 class Db_storage():
-    
+    """ this is storage class that will be used to
+    create a storage object that will handle storing,
+    updating, delete etc. """
+
     __engine = None
     __session = None
 
-
     def __init__(self):
-        self.__engine = create_engine("mysql+mysqldb://salem:root@localhost/pos")
+        """ This is the custructor method that will automatically
+        assign the attribute when the object of the class is created. """
+
+        self.__engine = create_engine(
+                "mysql+mysqldb://salem:root@localhost/pos"
+                )
         base_db.metadata.create_all(bind=self.__engine)
 
     def all(self, clas=None):
+        """ this method return a dictionary of all object of the classes
+        if class is None, else it return a dictionary of all object of
+        the giving class. """
 
         dic = {}
         classes = ["Withdraw", "User", "Deposit", "Bills"]
@@ -51,6 +62,8 @@ class Db_storage():
         return dic
 
     def save(self, obj):
+        """ This method is used to add obj to the database. """
+
         if type(obj) is dict:
             cls = obj.get("class")
             cls = globals()[cls]
@@ -70,6 +83,9 @@ class Db_storage():
         self.__session.commit()
 
     def update(self, cls, id, **kwargs):
+        """ This method used dictionary to update an object using the id
+        of the object base on the class of the object. """
+
         if type(cls) == str:
             cls = globals()[cls]
         result = self.__session.query(cls).filter_by(id=id).first()
@@ -98,10 +114,13 @@ class Db_storage():
                     else:
                         return "invalid key"
             self.__session.commit()
-            return  "{} updated successfully to {}".format(k, v)
+            return "{} updated successfully to {}".format(k, v)
         return "in valid id"
 
     def delete(self, cls, id):
+        """ This mothod is used to delete object from the
+        database using the object ib based on the class. """
+
         if type(cls) == str:
             cls = globals()[cls]
         result = self.__session.query(cls).filter_by(id=id).first()
@@ -110,14 +129,18 @@ class Db_storage():
             self.__session.commit()
             return "deleted successfully"
         return "invalid id"
-            
 
     def reload(self):
+        """ This method is used to create database session. """
+
         sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(sess_factory)
         self.__session = Session
 
     def check_id(self, cls, id):
+        """ This method is used to check if object exist based on
+        the id and return the object,. else return Nil. """
+
         result = self.all(cls)
         for k, v in result.items():
             if k.split(".")[1] == id:
@@ -125,57 +148,65 @@ class Db_storage():
         return "Nil"
 
     def check_user_name(self, cls, user_name):
+        """ This method is used to check if object exist based on
+        the user_name and return the object. else return Nil. """
+
         result = self.all(cls)
         for k, v in result.items():
             if v.user_name == user_name:
                 return v
         return "Nil"
 
-
     def profit(self, **kwargs):
+        """ This method is used to calculate profit and
+        number of transactins. it return dictionary with
+        profit and count. """
+
         dic = {"profit": 0, "count": 0}
         cls = kwargs.get("cls")
         user_id = kwargs.get("user_id")
 
-        if cls == None:
+        if cls is None:
             result = self.all()
-        elif cls != None:
-            result = self.all(cls) 
-
+        elif cls is not None:
+            result = self.all(cls)
         for k, v in result.items():
             if k.split(".")[0] != "User":
-                if user_id != None:
+                if user_id is not None:
                     if v.user_id == user_id:
                         dic["profit"] = dic["profit"] + v.profit
-                        dic["count"] = dic["count"]  + 1
-                elif user_id == None:
+                        dic["count"] = dic["count"] + 1
+                elif user_id is None:
                     dic["profit"] = dic["profit"] + v.profit
-                    dic["count"] = dic["count"]  + 1
+                    dic["count"] = dic["count"] + 1
 
         return (dic)
 
     def transactions(self, **kwargs):
+        """ This method is used to return a dictionary
+        with all the transaction. """
+
         dic = {}
         cls = kwargs.get("cls")
         user_id = kwargs.get("user_id")
 
-        if cls == None:
+        if cls is None:
             result = self.all()
-        elif cls != None:
+        elif cls is not None:
             result = self.all(cls)
 
         for k, v in result.items():
             if k.split(".")[0] != "User":
-                if user_id != None:
+                if user_id is not None:
                     if v.user_id == user_id:
                         key = "{}.{}".format(v.__class__.__name__, v.id)
                         dic[key] = v
-                elif user_id == None:
+                elif user_id is None:
                     key = "{}.{}".format(v.__class__.__name__, v.id)
                     dic[key] = v
-
-        return dic        
-
+        return dic
 
     def close(self):
+        """ This method is used to close the datav=base session. """
+
         self.__session.remove()
