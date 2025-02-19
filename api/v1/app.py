@@ -68,9 +68,7 @@ def user(id):
     else if method is DELELE it will delete the user. """
 
     if "user_name" in session:
-        if session["role"] == "admin" or
-        (session["role"] == "staff" and
-                request.json.get("password") is not None):
+        if session["role"] == "admin" or (session["role"] == "staff" and request.json.get("password") is not None):
             if request.method == "PUT":
                 user = storage.check_id("User", id)
                 if user != "Nil":
